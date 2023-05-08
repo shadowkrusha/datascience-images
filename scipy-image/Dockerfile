@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:f16d1e3a935a
+FROM jupyter/scipy-notebook:975e7404e1b1
 
 RUN pip install \
     jupyter-server-proxy mesa
