@@ -1,7 +1,12 @@
-FROM jupyter/datascience-notebook:975e7404e1b1
+FROM jupyter/datascience-notebook:846f4cd31970
 
 RUN pip install \
     jupyter-server-proxy mesa
+    
+RUN conda install -c conda-forge \
+    'jupyterlab>=3.0.0,<4.0.0a0' \
+    jupyterlab-lsp \
+    python-lsp-server r-languageserver
 
 USER root
 
