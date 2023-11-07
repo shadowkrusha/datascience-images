@@ -14,7 +14,7 @@ USER root
 # Java Installation
 RUN apt-get update --yes && \
     apt-get install --yes --no-install-recommends \
-    default-jdk unixodbc unixodbc-dev odbcinst  unixodbc-common libodbc2 libodbccr2 libodbcinst2 libltdl7 && \
+    default-jdk unixodbc unixodbc-dev odbcinst  unixodbc-common libodbc2 libodbccr2 libodbcinst2 libltdl7 odbcinst1debian2 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV SNOWFLAKE_ODBC_VERSION=3.1.1
@@ -30,5 +30,11 @@ RUN \
      -O snowflake-odbc.deb \
   && dpkg -i snowflake-odbc.deb \
   && rm snowflake-odbc.deb
+
+COPY install_packages.R /install_packages.R
+
+RUN Rscript /install_packages.R
     
 USER ${NB_UID}
+
+RUN echo 'options(repos=c(CRAN="https://cloud.r-project.org/"))' > /home/jovyan/.Rprofile
