@@ -1,5 +1,7 @@
 FROM jupyter/datascience-notebook:94ab69dde0ad
 
+ARG TARGETPLATFORM
+
 RUN pip install \
     jupyter-server-proxy mesa
 
