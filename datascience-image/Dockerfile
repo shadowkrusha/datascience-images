@@ -17,6 +17,8 @@ RUN apt-get update --yes && \
     default-jdk unixodbc unixodbc-dev odbcinst  unixodbc-common libodbc2 libodbccr2 libodbcinst2 libltdl7 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+ENV SNOWFLAKE_ODBC_VERSION=3.1.1
+
 RUN \
   case ${TARGETPLATFORM} in \
     "linux/amd64") DOWNLOAD_ARCH="x86_64"; DOWNLOAD_DIR="linux" ;; \
